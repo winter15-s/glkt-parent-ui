@@ -2,52 +2,57 @@
   <div class="app-container">
     <!--查询表单-->
     <el-card class="operate-container" shadow="never">
-    <el-form :inline="true" class="demo-form-inline">
+      <el-form :inline="true" class="demo-form-inline">
 
-      <!-- 所属分类：级联下拉列表 -->
-      <!-- 一级分类 -->
-      <el-form-item label="课程类别">
-        <el-select
-          v-model="searchObj.subjectParentId"
-          placeholder="请选择"
-          @change="subjectLevelOneChanged">
-          <el-option
-            v-for="subject in subjectList"
-            :key="subject.id"
-            :label="subject.title"
-            :value="subject.id"/>
-        </el-select>
+        <!-- 所属分类：级联下拉列表 -->
+        <!-- 一级分类 -->
+        <el-form-item label="课程类别">
+          <el-select
+            v-model="searchObj.subjectParentId"
+            placeholder="请选择"
+            @change="subjectLevelOneChanged"
+          >
+            <el-option
+              v-for="subject in subjectList"
+              :key="subject.id"
+              :label="subject.title"
+              :value="subject.id"
+            />
+          </el-select>
 
-        <!-- 二级分类 -->
-        <el-select v-model="searchObj.subjectId" placeholder="请选择">
-          <el-option
-            v-for="subject in subjectLevelTwoList"
-            :key="subject.id"
-            :label="subject.title"
-            :value="subject.id"/>
-        </el-select>
-      </el-form-item>
+          <!-- 二级分类 -->
+          <el-select v-model="searchObj.subjectId" placeholder="请选择">
+            <el-option
+              v-for="subject in subjectLevelTwoList"
+              :key="subject.id"
+              :label="subject.title"
+              :value="subject.id"
+            />
+          </el-select>
+        </el-form-item>
 
-      <!-- 标题 -->
-      <el-form-item label="标题">
-        <el-input v-model="searchObj.title" placeholder="课程标题"/>
-      </el-form-item>
-      <!-- 讲师 -->
-      <el-form-item label="讲师">
-        <el-select
-          v-model="searchObj.teacherId"
-          placeholder="请选择讲师">
-          <el-option
-            v-for="teacher in teacherList"
-            :key="teacher.id"
-            :label="teacher.name"
-            :value="teacher.id"/>
-        </el-select>
-      </el-form-item>
+        <!-- 标题 -->
+        <el-form-item label="标题">
+          <el-input v-model="searchObj.title" placeholder="课程标题"/>
+        </el-form-item>
+        <!-- 讲师 -->
+        <el-form-item label="讲师">
+          <el-select
+            v-model="searchObj.teacherId"
+            placeholder="请选择讲师"
+          >
+            <el-option
+              v-for="teacher in teacherList"
+              :key="teacher.id"
+              :label="teacher.name"
+              :value="teacher.id"
+            />
+          </el-select>
+        </el-form-item>
 
-      <el-button type="primary" icon="el-icon-search" @click="fetchData()">查询</el-button>
-      <el-button type="default" @click="resetData()">清空</el-button>
-    </el-form>
+        <el-button type="primary" icon="el-icon-search" @click="fetchData()">查询</el-button>
+        <el-button type="default" @click="resetData()">清空</el-button>
+      </el-form>
     </el-card>
 
     <!-- 工具按钮 -->
@@ -59,7 +64,7 @@
 
     <!-- 表格 -->
     <el-table :data="list" border stripe>
-        <el-table-column label="#" width="50">
+      <el-table-column label="#" width="50">
         <template slot-scope="scope">
           {{ (page - 1) * limit + scope.$index + 1 }}
         </template>
@@ -88,7 +93,7 @@
           {{ scope.row.param.teacherName }}
         </template>
       </el-table-column>
-      <el-table-column label="价格(元)" width="100" align="center" >
+      <el-table-column label="价格(元)" width="100" align="center">
         <template slot-scope="scope">
           <!-- {{ typeof '0' }}  {{ typeof 0 }} {{ '0' == 0 }} -->
           <!-- {{ typeof scope.row.price }}
@@ -104,9 +109,12 @@
           <el-tag v-else>{{ scope.row.price }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="status" label="课程状态" width="100" align="center" >
+      <el-table-column prop="status" label="课程状态" width="100" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.status === 0 ? 'warning' : 'success'">{{ scope.row.status === 0 ? '未发布' : '已发布' }}</el-tag>
+          <el-tag :type="scope.row.status === 0 ? 'warning' : 'success'">{{
+              scope.row.status === 0 ? '未发布' : '已发布'
+            }}
+          </el-tag>
         </template>
       </el-table-column>
       <el-table-column label="发布时间" width="140" align="center">
@@ -118,15 +126,15 @@
       <el-table-column label="操作" width="210" align="center">
         <template slot-scope="scope">
           <router-link :to="'/vodcourse/course/info/'+scope.row.id">
-            <el-button type="text" icon="el-icon-edit" >修改</el-button>
+            <el-button type="text" icon="el-icon-edit">修改</el-button>
           </router-link>
           <router-link :to="'/vodcourse/course/chapter/'+scope.row.id">
-            <el-button type="text" icon="el-icon-edit" >编辑大纲</el-button>
+            <el-button type="text" icon="el-icon-edit">编辑大纲</el-button>
           </router-link>
           <router-link :to="'/vodcourse/course/chart/'+scope.row.id">
             <el-button type="text" icon="el-icon-edit">课程统计</el-button>
           </router-link>
-          <el-button type="text" icon="el-icon-delete" @click="removeById(scope.row.id)" >删除</el-button>
+          <el-button type="text" icon="el-icon-delete" @click="removeById(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
