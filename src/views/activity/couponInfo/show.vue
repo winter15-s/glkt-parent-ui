@@ -4,36 +4,36 @@
     <h4>优惠券信息</h4>
     <table class="table table-striped table-condenseda table-bordered" width="100%">
       <tbody>
-      <tr>
-        <th width="15%">优惠券名称</th>
-        <td width="35%"><b style="font-size: 14px">{{ couponInfo.couponName }}</b></td>
-        <th width="15%">优惠券类型</th>
-        <td width="35%">
-          {{ couponInfo.couponType == 'REGISTER' ? '注册卷' : '推荐赠送卷' }}
-        </td>
-      </tr>
-      <tr>
-        <th>发行数量</th>
-        <td>{{ couponInfo.publishCount }}</td>
-        <th>每人限领次数</th>
-        <td>{{ couponInfo.perLimit }}</td>
-      </tr>
-      <tr>
-        <th>领取数量</th>
-        <td>{{ couponInfo.receiveCount }}</td>
-        <th>使用数量</th>
-        <td>{{ couponInfo.useCount }}</td>
-      </tr>
-      <tr>
-        <th>领取时间</th>
-        <td>{{ couponInfo.startTime }}至{{ couponInfo.endTime }}</td>
-        <th>过期时间</th>
-        <td>{{ couponInfo.expireTime }}</td>
-      </tr>
-      <tr>
-        <th>规则描述</th>
-        <td colspan="3">{{ couponInfo.ruleDesc }}</td>
-      </tr>
+        <tr>
+          <th width="15%">优惠券名称</th>
+          <td width="35%"><b style="font-size: 14px">{{ couponInfo.couponName }}</b></td>
+          <th width="15%">优惠券类型</th>
+          <td width="35%">
+            {{ couponInfo.couponType == 'REGISTER' ? '注册卷' : '推荐赠送卷' }}
+          </td>
+        </tr>
+        <tr>
+          <th>发行数量</th>
+          <td>{{ couponInfo.publishCount }}</td>
+          <th>每人限领次数</th>
+          <td>{{ couponInfo.perLimit }}</td>
+        </tr>
+        <tr>
+          <th>领取数量</th>
+          <td>{{ couponInfo.receiveCount }}</td>
+          <th>使用数量</th>
+          <td>{{ couponInfo.useCount }}</td>
+        </tr>
+        <tr>
+          <th>领取时间</th>
+          <td>{{ couponInfo.startTime }}至{{ couponInfo.endTime }}</td>
+          <th>过期时间</th>
+          <td>{{ couponInfo.expireTime }}</td>
+        </tr>
+        <tr>
+          <th>规则描述</th>
+          <td colspan="3">{{ couponInfo.ruleDesc }}</td>
+        </tr>
       </tbody>
     </table>
 
@@ -45,12 +45,14 @@
       :data="list"
       stripe
       border
-      style="width: 100%;margin-top: 10px;">
+      style="width: 100%;margin-top: 10px;"
+    >
 
       <el-table-column
         label="序号"
         width="70"
-        align="center">
+        align="center"
+      >
         <template slot-scope="scope">
           {{ (page - 1) * limit + scope.$index + 1 }}
         </template>
@@ -91,6 +93,7 @@
 
 <script>
 import api from '@/api/activity/couponInfo'
+
 export default {
   data() {
     return {
@@ -167,7 +170,7 @@ export default {
 }
 </script>
 <style>
-  .app-container h4 {
-    color: #606266;
-  }
+.app-container h4 {
+  color: #606266;
+}
 </style>

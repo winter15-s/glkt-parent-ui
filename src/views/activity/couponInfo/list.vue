@@ -3,7 +3,7 @@
 
     <!-- 工具条 -->
     <el-card class="operate-container" shadow="never">
-      <i class="el-icon-tickets" style="margin-top: 5px"></i>
+      <i class="el-icon-tickets" style="margin-top: 5px"/>
       <span style="margin-top: 5px">数据列表</span>
       <el-button class="btn-add" size="mini" @click="add()">添加</el-button>
     </el-card>
@@ -106,7 +106,7 @@ export default {
       this.fetchData(1)
     },
 
-    add(){
+    add() {
       this.$router.push({ path: '/activity/couponInfo/add' })
     },
 

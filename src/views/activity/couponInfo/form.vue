@@ -3,7 +3,7 @@
     <el-form label-width="120px">
 
       <el-form-item label="优惠券名称">
-        <el-input v-model="couponInfo.couponName"/>
+        <el-input v-model="couponInfo.couponName" />
       </el-form-item>
       <el-form-item label="优惠券类型">
         <el-radio-group v-model="couponInfo.couponType">
@@ -13,30 +13,33 @@
       </el-form-item>
 
       <el-form-item label="发行数量">
-        <el-input v-model="couponInfo.publishCount"/>
+        <el-input v-model="couponInfo.publishCount" />
       </el-form-item>
       <el-form-item label="领取时间">
         <el-date-picker
           v-model="couponInfo.startTime"
           type="date"
           placeholder="选择开始日期"
-          value-format="yyyy-MM-dd" />
+          value-format="yyyy-MM-dd"
+        />
         至
         <el-date-picker
           v-model="couponInfo.endTime"
           type="date"
           placeholder="选择开始日期"
-          value-format="yyyy-MM-dd" />
+          value-format="yyyy-MM-dd"
+        />
       </el-form-item>
       <el-form-item label="过期时间">
         <el-date-picker
           v-model="couponInfo.expireTime"
           type="datetime"
           placeholder="选择开始日期"
-          value-format="yyyy-MM-dd HH:mm:ss" />
+          value-format="yyyy-MM-dd HH:mm:ss"
+        />
       </el-form-item>
       <el-form-item label="直播详情">
-        <el-input v-model="couponInfo.ruleDesc" type="textarea" rows="5"/>
+        <el-input v-model="couponInfo.ruleDesc" type="textarea" rows="5" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="saveOrUpdate">保存</el-button>
